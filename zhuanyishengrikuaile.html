@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐</title>
+    <style>
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>生日快乐</h1>
+    <p class="subtitle"></p>
+
+    <div class="input-group">
+        <label for="blessingCount"></label>
+        <input type="number" id="blessingCount" min="1" max="1000000" value="5">
+    </div>
+
+    <button id="generateBtn">生成祝福</button>
+
+    <div class="blessings" id="blessingsContainer">
+        <!-- 祝福语将在这里显示 -->
+    </div>
+</div>
+
+<script>
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        const count = parseInt(document.getElementById('blessingCount').value);
+        const container = document.getElementById('blessingsContainer');
+
+        // 清空之前的祝福
+        container.innerHTML = '';
+
+        // 验证输入
+        if (isNaN(count) || count < 1) {
+            container.innerHTML = '<div class="blessing-item">请输入有效的数字！</div>';
+            return;
+        }
+
+        if (count > 1000) {
+            container.innerHTML = '<div class="blessing-item">数量不能超过1000！</div>';
+            return;
+        }
+
+        // 生成祝福
+        for (let i = 0; i < count; i++) {
+            const blessingItem = document.createElement('div');
+            blessingItem.className = 'blessing-item';
+            blessingItem.textContent = `祝你生日快乐`;
+            container.appendChild(blessingItem);
+        }
+    });
+</script>
+</body>
+</html>
